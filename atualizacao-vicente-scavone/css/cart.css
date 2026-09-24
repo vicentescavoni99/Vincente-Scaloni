@@ -1,0 +1,190 @@
+/* ============================================================
+   cart.css — carrinho por WhatsApp (gaveta lateral + página)
+   Não existe pagamento no site: o pedido é enviado por WhatsApp
+   e finalizado com um atendente (24 horas).
+   ============================================================ */
+
+/* ---------- selo "atendimento 24h" (usado na gaveta e na página) ---------- */
+.wa-247{
+  display:flex;
+  align-items:center;
+  gap: 12px;
+  background: var(--color-wine);
+  color: #fff;
+  padding: 12px 16px;
+}
+.wa-247__dot{
+  width: 10px; height: 10px; flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--color-online);
+  box-shadow: 0 0 0 4px rgba(43,182,115,.25);
+}
+.wa-247 strong{ display:block; font-size: .88rem; font-family: var(--font-display); }
+.wa-247 span{ display:block; font-size: .76rem; color: #EBCACA; line-height: 1.35; }
+
+.wa-note{
+  margin: 12px 0 0;
+  font-size: .76rem;
+  color: var(--color-gray-mute);
+  text-align: center;
+  line-height: 1.45;
+}
+
+/* botão de WhatsApp (vermelho da marca, ícone branco) */
+.btn-whatsapp{
+  background: var(--color-brand);
+  color: #fff;
+  gap: .6em;
+}
+.btn-whatsapp:hover{ background: var(--color-brand-dark); }
+.btn-whatsapp svg{ width: 19px; height: 19px; flex-shrink: 0; }
+
+/* ---------- linha de item (gaveta e página) ---------- */
+.cart-row{
+  display:grid;
+  grid-template-columns: 72px 1fr;
+  gap: 14px;
+  align-items:start;
+  background:#fff;
+  border: 1px solid var(--color-gray-line);
+  border-radius: var(--radius-md);
+  padding: 12px;
+}
+.cart-row__media{
+  width: 72px; height: 72px;
+  border-radius: 10px;
+  overflow:hidden;
+  background:#fff;
+  border: 1px solid var(--color-gray-line);
+}
+.cart-row__media img{ width:100%; height:100%; object-fit:contain; padding: 4px; }
+.cart-row__name{
+  font-family: var(--font-display);
+  font-weight:700;
+  color: var(--color-wine);
+  font-size: .9rem;
+  line-height: 1.3;
+}
+.cart-row__meta{ font-size: .76rem; color: var(--color-gray-mute); margin-top: 2px; }
+.cart-row__bottom{
+  display:flex; align-items:center; justify-content:space-between;
+  gap: 10px; margin-top: 10px; flex-wrap: wrap;
+}
+.cart-row__subtotal{ font-weight:800; color: var(--color-wine); font-size: .95rem; }
+.cart-row__remove{
+  background:none; border:none; padding: 4px 0;
+  color: var(--color-gray-mute); font-size: .76rem; font-weight:600;
+  display:flex; align-items:center; gap:5px;
+}
+.cart-row__remove svg{ width: 14px; height: 14px; }
+.cart-row__remove:hover{ color: var(--color-brand); }
+
+/* seletor de quantidade compacto (independe do product.css) */
+.cart-qty{
+  display:inline-flex; align-items:center;
+  border: 1.5px solid var(--color-gray-line);
+  border-radius: 999px;
+  overflow:hidden;
+}
+.cart-qty button{
+  width: 32px; height: 32px;
+  background: transparent; border: none;
+  font-size: 1rem; font-weight: 700; color: var(--color-wine);
+}
+.cart-qty button:hover{ background: var(--color-blush); }
+.cart-qty input{
+  width: 38px; height: 32px;
+  border: none; text-align:center;
+  font-weight: 700; font-size: .85rem;
+  -moz-appearance: textfield;
+  color: var(--color-gray-dark);
+}
+.cart-qty input::-webkit-outer-spin-button,
+.cart-qty input::-webkit-inner-spin-button{ -webkit-appearance: none; margin: 0; }
+
+/* ---------- gaveta lateral ---------- */
+.cart-drawer{
+  position: fixed; inset:0; z-index: 850;
+  visibility: hidden;
+  pointer-events: none;
+}
+.cart-drawer.is-open{ visibility: visible; pointer-events: auto; }
+.cart-drawer__backdrop{
+  position:absolute; inset:0;
+  background: rgba(51,5,4,.5);
+  opacity: 0;
+  transition: opacity .22s ease;
+}
+.cart-drawer.is-open .cart-drawer__backdrop{ opacity: 1; }
+.cart-drawer__panel{
+  position:absolute; top:0; right:0; bottom:0;
+  width: min(420px, 100vw);
+  background:#fff;
+  display:flex; flex-direction:column;
+  transform: translateX(100%);
+  transition: transform .24s ease;
+  box-shadow: -12px 0 36px rgba(0,0,0,.2);
+}
+.cart-drawer.is-open .cart-drawer__panel{ transform: translateX(0); }
+.cart-drawer__head{
+  display:flex; align-items:center; justify-content:space-between;
+  padding: 14px 12px 14px 20px;
+  border-bottom: 1px solid var(--color-gray-line);
+}
+.cart-drawer__head h3{ margin:0; font-size: 1.05rem; }
+.cart-drawer__items{
+  flex:1; overflow-y:auto;
+  padding: 16px 20px;
+  display:flex; flex-direction:column; gap: 12px;
+  background: var(--color-gray-light);
+}
+.cart-drawer__foot{
+  padding: 16px 20px 20px;
+  border-top: 1px solid var(--color-gray-line);
+  background:#fff;
+}
+.cart-total{
+  display:flex; justify-content:space-between; align-items:baseline;
+  margin-bottom: 12px;
+  color: var(--color-gray-mute); font-size: .88rem;
+}
+.cart-total strong{ font-size: 1.15rem; color: var(--color-wine); font-family: var(--font-display); }
+.cart-drawer__foot .btn + .btn{ margin-top: 10px; }
+
+.cart-empty{
+  text-align:center;
+  padding: 36px 8px 8px;
+  color: var(--color-gray-mute);
+}
+.cart-empty h3{ font-size: 1.05rem; margin-bottom: 6px; }
+.cart-empty p{ margin: 0 0 18px; font-size: .88rem; }
+
+/* ---------- página do carrinho ---------- */
+.cart-layout{
+  display:grid;
+  grid-template-columns: minmax(0,1fr) 360px;
+  gap: 32px;
+  align-items:flex-start;
+}
+@media (max-width: 860px){ .cart-layout{ grid-template-columns: 1fr; } }
+.cart-list{ display:flex; flex-direction:column; gap: 12px; }
+.cart-layout .cart-row{ grid-template-columns: 96px 1fr; padding: 16px; }
+.cart-layout .cart-row__media{ width: 96px; height: 96px; }
+
+.summary-card{
+  background:#fff;
+  border: 1px solid var(--color-gray-line);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  position: sticky;
+  top: calc(var(--header-h) + 64px);
+}
+.summary-card__body{ padding: 20px 22px 22px; }
+.summary-card h3{ font-size: 1.05rem; }
+.summary-row{ display:flex; justify-content:space-between; font-size: .9rem; padding: 6px 0; color: var(--color-gray-mute); }
+.summary-row.total{
+  border-top: 1.5px solid var(--color-gray-line);
+  margin-top: 8px; padding-top: 14px;
+  font-weight:800; color: var(--color-wine); font-size: 1.05rem;
+}
+.summary-card .btn{ margin-top: 16px; }
