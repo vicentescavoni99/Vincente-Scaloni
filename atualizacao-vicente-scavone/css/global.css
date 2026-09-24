@@ -649,3 +649,38 @@ input, select, textarea{
   border-top: 1px solid #eee;
   padding-top: 12px;
 }
+/* ============================================================
+   Fundo Métrica & Ciência com Movimento Fluido (Flutuante)
+   ============================================================ */
+
+section.hero,
+.hero,
+.hero.hero--offer {
+  position: relative !important;
+  background-color: #faf8f7 !important;
+  
+  /* Grade sutil + gradiente radial central */
+  background-image: 
+    radial-gradient(circle at 50% 35%, rgba(255, 255, 255, 0.95) 0%, rgba(250, 248, 247, 0.3) 70%),
+    linear-gradient(rgba(209, 17, 25, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(209, 17, 25, 0.06) 1px, transparent 1px) !important;
+  
+  background-size: 100% 100%, 28px 28px, 28px 28px !important;
+  
+  /* Aplicação da animação contínua e suave */
+  animation: gridFloat 18s linear infinite !important;
+  
+  padding-top: 40px;
+  padding-bottom: 60px;
+  overflow: hidden;
+}
+
+/* Animação que faz as linhas deslizarem levemente na diagonal */
+@keyframes gridFloat {
+  0% {
+    background-position: center center, 0px 0px, 0px 0px;
+  }
+  100% {
+    background-position: center center, 28px 28px, 28px 28px;
+  }
+}
