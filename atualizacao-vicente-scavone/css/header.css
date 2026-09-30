@@ -43,7 +43,7 @@
 }
 
 .brand{ display:flex; align-items:center; flex-shrink:0; }
-.brand img{ height: 36px; width:auto; }
+.brand img{ height: 69px; width: auto; max-width: 100%; object-fit: contain; }
 
 .header-search{
   display:flex;
